@@ -7,5 +7,7 @@ defmodule Byzantin.Web.Router do
 
   scope "/api", Byzantin.Web do
     pipe_through :api
+
+    resources "/posts", PostController, except: [:new, :edit]
   end
 end
