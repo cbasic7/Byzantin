@@ -1,0 +1,15 @@
+use Mix.Config
+
+config :byzantin, Byzantin.Web.Endpoint,
+  http: [port: 4001],
+  server: false
+
+config :logger, level: :warn
+
+config :byzantin, Byzantin.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  database: "byzantin_test",
+  hostname: "localhost",
+  pool: Ecto.Adapters.SQL.Sandbox

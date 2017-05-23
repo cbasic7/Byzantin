@@ -1,0 +1,15 @@
+use Mix.Config
+
+config :byzantin,
+  ecto_repos: [Byzantin.Repo]
+
+config :byzantin, Byzantin.Web.Endpoint,
+  url: [host: "localhost"],
+  secret_key_base: "LLTV3hpe1zXuNkaX/KeySvX0l0FOd6TpMBiHE+mwAl8eaBLd6bLOsblZRvktSLTw",
+  render_errors: [view: Byzantin.Web.ErrorView, accepts: ~w(json)]
+
+config :logger, :console,
+  format: "$time $metadata[$level] $message\n",
+  metadata: [:request_id]
+
+import_config "#{Mix.env}.exs"

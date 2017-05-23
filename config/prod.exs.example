@@ -1,0 +1,9 @@
+use Mix.Config
+
+config :byzantin, Byzantin.Web.Endpoint,
+  on_init: {Byzantin.Web.Endpoint, :load_from_system_env, []},
+  url: [host: "example.com", port: 80]
+
+config :logger, level: :info
+
+import_config "prod.secret.exs"
