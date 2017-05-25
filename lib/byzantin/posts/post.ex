@@ -7,6 +7,7 @@ defmodule Byzantin.Posts.Post do
   schema "posts_posts" do
     field :body, :string
     field :title, :string
+    field :published, :boolean, default: false
 
     timestamps()
   end
@@ -14,7 +15,7 @@ defmodule Byzantin.Posts.Post do
   @doc false
   def changeset(%Post{} = post, attrs) do
     post
-    |> cast(attrs, [:title, :body])
+    |> cast(attrs, [:title, :body, :published])
     |> validate_required([:title, :body])
     |> validate_length(:title, max: 50)
   end

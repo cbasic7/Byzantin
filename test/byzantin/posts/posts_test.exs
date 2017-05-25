@@ -7,7 +7,7 @@ defmodule Byzantin.PostsTest do
     alias Byzantin.Posts.Post
 
     @valid_attrs %{body: "some body", title: "some title"}
-    @update_attrs %{body: "some updated body", title: "some updated title"}
+    @update_attrs %{body: "some updated body", title: "some updated title", published: true}
     @invalid_attrs %{body: nil, title: nil}
     @title_too_long_attrs %{body: "some body", title: "aabcdefghijklmnopqrstuvwxyzabcdeofg\
       hijklmnopqrstuvwxyzbcdefghijklmnopqrstuvwxyz"}
