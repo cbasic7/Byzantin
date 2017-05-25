@@ -6,7 +6,18 @@ defmodule Byzantin.Web.PostController do
 
   action_fallback Byzantin.Web.FallbackController
 
-  def index(conn, _params) do
+
+  def index(conn, %{"published" => "true"}) do
+    posts = Posts.list_posts(:published)
+    render(conn, "index.json", posts: posts)
+  end
+
+  def index(conn, %{"published" => "false"}) do
+    posts = Posts.list_posts(:unpublished)
+    render(conn, "index.json", posts: posts)
+  end
+
+  def index(conn, %{}) do
     posts = Posts.list_posts()
     render(conn, "index.json", posts: posts)
   end
