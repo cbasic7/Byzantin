@@ -21,6 +21,16 @@ defmodule Byzantin.Posts do
     Repo.all(Post)
   end
 
+  def list_posts(:published) do
+    query = Post |> where([p], p.published == true)
+    Repo.all(query)
+  end
+
+  def list_posts(:unpublished) do
+    query = Post |> where([p], p.published == false)
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single post.
 

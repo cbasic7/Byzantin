@@ -21,6 +21,16 @@ defmodule Byzantin.PostsTest do
       assert Posts.list_posts() == [post]
     end
 
+    test "list_post/1 returns published posts" do
+      published_post = insert(:post, published: true)
+      assert Posts.list_posts(:published) == [published_post]
+    end
+
+    test "list_post/1 returns unpublished posts", %{post: post} do
+      insert(:post, published: true)
+      assert Posts.list_posts(:unpublished) == [post]
+    end
+
     test "get_post!/1 returns the post with given id", %{post: post} do
       assert Posts.get_post!(post.id) == post
     end
