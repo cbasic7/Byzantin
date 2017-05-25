@@ -21,6 +21,7 @@ defmodule Byzantin.DataCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
+      import Posts.Factory
       import Byzantin.DataCase
     end
   end

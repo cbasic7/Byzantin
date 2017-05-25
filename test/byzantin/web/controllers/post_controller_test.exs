@@ -1,17 +1,11 @@
 defmodule Byzantin.Web.PostControllerTest do
   use Byzantin.Web.ConnCase
 
-  alias Byzantin.Posts
   alias Byzantin.Posts.Post
 
   @create_attrs %{body: "some body", title: "some title"}
   @update_attrs %{body: "some updated body", title: "some updated title"}
   @invalid_attrs %{body: nil, title: nil}
-
-  def fixture(:post) do
-    {:ok, post} = Posts.create_post(@create_attrs)
-    post
-  end
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -39,7 +33,7 @@ defmodule Byzantin.Web.PostControllerTest do
   end
 
   test "updates chosen post and renders post when data is valid", %{conn: conn} do
-    %Post{id: id} = post = fixture(:post)
+    %Post{id: id} = post = insert(:post)
     conn = put conn, post_path(conn, :update, post), post: @update_attrs
     assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
@@ -51,13 +45,13 @@ defmodule Byzantin.Web.PostControllerTest do
   end
 
   test "does not update chosen post and renders errors when data is invalid", %{conn: conn} do
-    post = fixture(:post)
+    post = insert(:post)
     conn = put conn, post_path(conn, :update, post), post: @invalid_attrs
     assert json_response(conn, 422)["errors"] != %{}
   end
 
   test "deletes chosen post", %{conn: conn} do
-    post = fixture(:post)
+    post = insert(:post)
     conn = delete conn, post_path(conn, :delete, post)
     assert response(conn, 204)
     assert_error_sent 404, fn ->

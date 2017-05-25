@@ -20,6 +20,7 @@ defmodule Byzantin.Web.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
       import Byzantin.Web.Router.Helpers
+      import Posts.Factory
 
       # The default endpoint for testing
       @endpoint Byzantin.Web.Endpoint
